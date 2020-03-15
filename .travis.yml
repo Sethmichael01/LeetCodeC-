@@ -1,0 +1,24 @@
+language: csharp
+
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode8.3
+      dotnet: 1.0.1
+      mono: none
+    - os: linux
+      dist: trusty
+      sudo: required
+      dotnet: 1.0.1
+      mono: none
+
+branches:
+  only:
+    - master
+script:
+  - ulimit -n 2048
+  - dotnet restore "Algorithms" 
+  - dotnet restore "AlgorithmsTest"
+  - dotnet build "Algorithms"
+  - dotnet build "AlgorithmsTest"
+   - dotnet test "AlgorithmsTest"
